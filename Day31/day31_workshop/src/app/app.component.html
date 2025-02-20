@@ -1,0 +1,5 @@
+<app-number-image [number]="numberReceived" ></app-number-image>
+<app-navigator (imageNumber)="receiveNumber($event)"></app-navigator>
+<div class="d-flex justify-content-center align-items-center mt-3">
+  <p>Number received: {{numberReceived}}</p>
+</div>

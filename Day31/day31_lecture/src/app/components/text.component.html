@@ -1,0 +1,6 @@
+<p (click)="textClicked()" (mouseenter)="clearCounter()">
+    {{ text | titlecase }} Got ({{ counter }}) clicks
+</p>
+<button type="button" (click)="fireClicks($event)">
+    Send Event
+</button>

@@ -1,0 +1,5 @@
+<h1>{{ title }} ({{ allClicks }})</h1>
+@for (t of texts; track $index){
+  <app-text [text]="t" (totalClicks)="whenTotalClicks($event)"></app-text>
+}
+<app-text-input (onNewText)="whenNewText($event)"></app-text-input>

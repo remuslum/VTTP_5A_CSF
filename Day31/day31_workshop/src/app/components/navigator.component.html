@@ -4,5 +4,8 @@
             <option value="{{n}}">{{n}}</option>
         }
     </select> 
-    <button class="btn btn-secondary mt-3" (click)="getNumber(+numberSelect.value)">Generate</button>   
+    <div class="d-flex align-items-center justify-content-center mt-3">
+        <button type="button" (click)="getNextImage(+numberSelect.value)">Next</button>
+        <button type="button" (click)="getPrevImage(+numberSelect.value)">Previous</button>
+    </div> 
 </div>

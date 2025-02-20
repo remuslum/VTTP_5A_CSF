@@ -11,7 +11,10 @@ export class AppComponent {
 
   numberReceived:number = 0
 
-  protected receiveNumber(numberReceived:number){
-    this.numberReceived = numberReceived
+  numbersList:number[] = Array.from({ length: 31 }, (_, index) => index);
+
+  protected receiveNumber(numberToReceive:number){
+    this.numberReceived = numberToReceive
   }
+  
 }

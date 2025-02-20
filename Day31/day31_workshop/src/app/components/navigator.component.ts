@@ -1,4 +1,4 @@
-import { Component, Output } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -8,17 +8,33 @@ import { Subject } from 'rxjs';
   styleUrl: './navigator.component.css'
 })
 export class NavigatorComponent {
-  
-  numbersList:number[] = Array.from({ length: 31 }, (_, index) => index);
+  @Input()
+  numberToChange:number = 0
 
-  number:number = 0
+  @Input()
+  numbersList:number[] = []
 
   @Output()
   imageNumber = new Subject<number>();
 
-  protected getNumber(newNumber:number){
-    this.imageNumber.next(newNumber)
-    this.number = newNumber
+  protected getNextImage(numberToIncrease:number){
+    var finalNumber = numberToIncrease + this.numberToChange
+    if(finalNumber > 30){
+      this.numberToChange = finalNumber % 31
+    } else {
+      this.numberToChange = finalNumber
+    }
+    this.imageNumber.next(this.numberToChange)
+  }
+
+  protected getPrevImage(numberToIncrease:number){
+    var finalNumber = numberToIncrease - this.numberToChange
+    if(finalNumber < 0){
+      this.numberToChange = 31 + finalNumber
+    } else {
+      this.numberToChange = finalNumber
+    }
+    this.imageNumber.next(this.numberToChange)
   }
 
 }

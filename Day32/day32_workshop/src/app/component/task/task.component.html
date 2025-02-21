@@ -1,0 +1,117 @@
+<h2>Todo Task</h2>
+<form [formGroup]="form" (submit)="processForm()">
+    <ul>
+        <li>
+            Form valid: {{form.valid}}      
+        </li>
+        <li>
+            Form Invalid: {{form.invalid}}
+        </li>
+        <li>
+            taskName valid: {{form.get('taskName')?.valid}}
+        </li>
+        <li>
+            taskName invalid : {{form.get('taskName')?.invalid}}
+        </li>
+    </ul>
+    <table>
+        <tr>
+            <td>
+                Task Name
+            </td>
+            <td>
+                <input type="text" formControlName="taskName"
+                [ngClass]="{'valid':form.get('taskName')?.valid, 'invalid':form.get('taskName')?.invalid}">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Priority
+            </td>
+            <td>
+                <select formControlName="priority">
+                    <option value="1">Low</option>
+                    <option value="2">Medium</option>
+                    <option value="3">High</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Due Date
+            </td>
+            <td>
+                <input type="date" formControlName="dueDate"
+                [ngClass]="{'valid':form.get('dueDate')?.valid, 'invalid':form.get('dueDate')?.invalid}">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Urgency
+            </td>
+            <td>
+                <input type="range" min="1" max="10" formControlName="urgency"
+                [ngClass]="{'valid':form.get('urgency')?.valid, 'invalid':form.get('urgency')?.invalid}">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Comments
+            </td>
+            <td>
+                <textarea rows="4" cols="10" formControlName="comments"
+                [ngClass]="{'valid':form.get('comments')?.valid, 'invalid':form.get('comments')?.invalid}"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Procrastinate
+            </td>
+            <td>
+                <input type="checkbox" formControlName="procrastinate">
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button type="submit" [disabled]="form.invalid">Add</button>
+                <button type="button" (click)="addCollaborators()">Add Collaborators</button>
+            </td>
+        </tr>
+    </table>
+
+    @if(collaborators.controls.length > 0){
+        <h3>Collaborators</h3>
+    
+        <table>
+            <thead>
+                <tr>
+                    <th>Index</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody formArrayName="collaborators">
+                @for (col of collaborators.controls; let idx = $index; track col){
+                    <tr [formGroupName]="idx">
+                        <td>{{idx+1}}</td>
+                        <td>
+                            <input type="text" formControlName="name">
+                        </td>
+                        <td>
+                            <input type="email" formControlName="email">
+                        </td>
+                        <td>
+                            <button type="button">X</button>
+                        </td>
+                    </tr>
+                    
+                }
+                
+            </tbody>
+        </table>
+    } @else {
+        <h3>Get help!</h3>
+    }
+    
+</form>

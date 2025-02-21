@@ -14,5 +14,4 @@ export class NumberImageComponent {
   protected getImage(){
     return `/numbers_folder/number${this.number}.jpg`;
   }
-
 }

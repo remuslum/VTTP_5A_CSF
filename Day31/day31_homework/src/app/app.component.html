@@ -1,5 +1,7 @@
-@for(image of myImages;let idx = $index;track idx){
-  <app-inventory [imageName]="getPathName(image)"/>
+@for(product of myProducts;let idx = $index;track idx){
+  <app-inventory [imageName]="getPathName(product.picture)" [name]="product.name" [price]="product.price" 
+  (productToIncrement)="sendToCart($event)" (productToDecrement)="removeFromCart($event)"/>
 }
+<app-table [cart]="cart"/>
 
 

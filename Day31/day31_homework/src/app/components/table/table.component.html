@@ -1,0 +1,24 @@
+<div class="d-flex justify-content-center align-items-center">
+    <table>
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Price</td>
+                <td>Quantity</td>
+            </tr>
+        </thead>
+        <tbody>
+            @for(cartItem of cart;let idx = $index;track idx){
+                <tr>
+                    <td>{{cartItem.name}}</td>
+                    <td>{{cartItem.totalPrice}}</td>
+                    <td>{{cartItem.quantity}}</td>
+                </tr>
+            }
+            @empty {
+                <p class="fs-3">Table is empty</p>
+            }
+        </tbody>
+        
+    </table>
+</div>

@@ -1,3 +1,5 @@
+import { Product } from "../model/product"
+
 export const IMAGES:string[] = [
     'acorn_squash.png',
     'apple.png',
@@ -22,3 +24,33 @@ export const IMAGES:string[] = [
     'tomato.png',
     'zucchini.png'
 ]
+
+export const PRODUCTS:Product[] = [
+    {
+        name : "apple",
+        picture : IMAGES[1],
+        price : 1.00
+    },
+    {
+        name : "bell_pepper",
+        picture : IMAGES[2],
+        price : 2.00
+    },
+    {
+        name : "blueberries",
+        picture : IMAGES[3],
+        price : 1.50
+    },
+    {
+        name : "broccoli",
+        picture : IMAGES[4],
+        price : 3.00
+    },
+    {
+        name : "carrot",
+        picture : IMAGES[5],
+        price : 4.00
+    }
+     
+]
+

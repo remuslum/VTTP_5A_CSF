@@ -1,4 +1,7 @@
-<div class="d-flex align-items-start justify-content-between border w-50">
+<div class="d-flex flex-column align-items-center justify-content-center border">
     <img [src]="imageName" class="img_thumbnail border">
-    <button class="btn btn-primary mt-3 mb-3">Add</button>
+    <p class="fs-2">Name: {{name}}</p>
+    <p class="fs-2">Price: {{price}}</p>
+    <button class="btn btn-primary mt-3 mb-3" (click)="addFruitToCart()">Add</button>
+    <button class="btn btn-secondary mt-3 mb-3" (click)="decreaseFruitFromCart()">Remove</button>
 </div>

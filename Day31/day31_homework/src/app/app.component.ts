@@ -10,9 +10,7 @@ import { CartItem } from './model/cartItem';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'day31_homework';
-
-  myProducts:any[] = PRODUCTS
+  myProducts:Product[] = PRODUCTS
 
   tempProduct:Product = {
     name:'',

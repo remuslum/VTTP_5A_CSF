@@ -1,24 +1,41 @@
 <div class="d-flex justify-content-center align-items-center">
-    <table>
-        <thead>
-            <tr>
-                <td>Name</td>
-                <td>Price</td>
-                <td>Quantity</td>
-            </tr>
-        </thead>
-        <tbody>
-            @for(cartItem of cart;let idx = $index;track idx){
+    <form (ngSubmit)="processForm($event)" [formGroup]="form">
+        <div class="mt-3 mb-3">
+            <label for="name" class="form-label mx-2">Name</label>
+            <input type="text" id="name" formControlName="name">
+        </div>
+        <div class="mt-3 mb-3">
+            <label for="address" class="form-label mx-2">Address</label>
+            <input type="text" id="address" formControlName="address">
+        </div>
+        <div class="mt-3 mb-3">
+            <label class="form-label mx-2">Delivery</label>
+            <input type="radio" formControlName="delivery" value="delivery" name="delivery">
+            <label class="form-label mx-2">Pickup</label>
+            <input type="radio" formControlName="delivery" value="pickup" name="delivery">
+        </div>
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>{{cartItem.name}}</td>
-                    <td>{{cartItem.totalPrice}}</td>
-                    <td>{{cartItem.quantity}}</td>
+                    <td>Name</td>
+                    <td>Price</td>
+                    <td>Quantity</td>
                 </tr>
-            }
-            @empty {
-                <p class="fs-3">Table is empty</p>
-            }
-        </tbody>
-        
-    </table>
+            </thead>
+            <tbody>
+                @for(cartItem of cart;let idx = $index;track idx){
+                    <tr>
+                        <td>{{cartItem.name}}</td>
+                        <td>{{cartItem.totalPrice}}</td>
+                        <td>{{cartItem.quantity}}</td>
+                    </tr>
+                }
+                @empty {
+                    <p class="fs-3">No items added</p>
+                }
+            </tbody>
+        </table>
+        <button class="btn btn-success" type="submit">Checkout</button>
+    </form>
+    
 </div>

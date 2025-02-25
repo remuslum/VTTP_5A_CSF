@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { PRODUCTS } from './images/images';
 import { Product } from './model/product';
 import { CartItem } from './model/cartItem';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,8 @@ export class AppComponent {
   };
 
   cart:CartItem[] = []
+
+  formBuilder = inject(FormBuilder)
 
   protected getPathName(imageName:string){
     return 'assets/fruits/' + imageName; 
@@ -49,5 +52,15 @@ export class AppComponent {
         item.totalPrice = item.quantity * product.price
       }
     } 
+  }
+
+  protected convertToFormArray(){
+    return this.formBuilder.array(
+      this.cart.map((item) => this.formBuilder.group({
+        productName:this.formBuilder.control(item.name),
+        totalPrice:this.formBuilder.control(item.totalPrice),
+        quantity:this.formBuilder.control(item.quantity)
+      }))
+    )
   }
 }

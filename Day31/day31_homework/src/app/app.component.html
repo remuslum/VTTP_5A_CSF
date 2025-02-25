@@ -2,6 +2,7 @@
   <app-inventory [imageName]="getPathName(product.picture)" [name]="product.name" [price]="product.price" 
   (productToIncrement)="sendToCart($event)" (productToDecrement)="removeFromCart($event)"/>
 }
-<app-table [cart]="cart"/>
+<!-- <app-table [cart]="convertToFormArray()"/> -->
+ <app-table [cart]="cart"></app-table>
 
 

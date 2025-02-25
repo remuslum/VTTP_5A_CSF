@@ -9,10 +9,11 @@ import { Order } from '../../model/order';
   templateUrl: './table.component.html',
   styleUrl: './table.component.css'
 })
-export class TableComponent implements OnInit,DoCheck{
+export class TableComponent implements OnInit{
 
   @Input()
-  cart:CartItem[] = [];
+  // cart!:FormArray;
+  cart:CartItem[] = []
 
   formBuilder = inject(FormBuilder)
 
@@ -22,7 +23,6 @@ export class TableComponent implements OnInit,DoCheck{
 
   ngOnInit(): void {
     this.form = this.createForm()
-    this.cartItems = this.formBuilder.array([])
   }
 
   ngDoCheck(): void {
@@ -34,7 +34,7 @@ export class TableComponent implements OnInit,DoCheck{
       name:this.formBuilder.control<string>(''),
       address:this.formBuilder.control<string>(''),
       delivery:this.formBuilder.control<string>(''),
-      cartItems:this.cartItems
+      cartItems:this.cart
     })
   }
 
@@ -51,16 +51,22 @@ export class TableComponent implements OnInit,DoCheck{
 
   protected processForm(event:Event){
     event.preventDefault()
-    this.form.setControl("cart",this.formBuilder.array(
-      this.cart.map((item) => this.formBuilder.group({
-        productName : this.formBuilder.control(item.name),
-        quantity : this.formBuilder.control(item.quantity),
-        totalPrice : this.formBuilder.control(item.totalPrice)
-      }))
-    ))
+    // this.form.setControl("cart",this.formBuilder.array(
+    //   this.cart.map((item) => this.formBuilder.group({
+    //     productName : this.formBuilder.control(item.name),
+    //     quantity : this.formBuilder.control(item.quantity),
+    //     totalPrice : this.formBuilder.control(item.totalPrice)
+    //   }))
+    // ))
     const formValue:Order = this.form.value
     console.log("processing form")
     console.info('>>>> form:',formValue)
+  }
+
+  protected toggleRadio(value:string){
+    if(this.form.value.delivery === value){
+      this.form.get("delivery")?.setValue('')
+    }
   }
 
 }

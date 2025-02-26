@@ -1,0 +1,48 @@
+<form [formGroup]="form" (ngSubmit)="processForm()">
+    <div class="d-flex flex-column justify-content-center align-items center">
+        <div class="mt-2 mb-2">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" formControlName="name">
+        </div>
+        @if(form.get('name')?.invalid){
+            <div class="alert alert-danger w-25">
+                Name is required
+            </div>
+        }
+        <div class="mt-2 mb-2">
+            <label class="form-label">Email</label>
+            <input type="text" class="form-control" formControlName="email">
+        </div>
+        @if(form.get('email')?.invalid){
+            <div class="alert alert-danger w-25">
+                Email is required
+            </div>
+        }
+
+        <div class="mt-2 mb-2">
+            <label class="form-label">Phone</label>
+            <input type="text" class="form-control" formControlName="phone">
+        </div>
+        @if(form.get('phone')?.invalid){
+            <div class="alert alert-danger w-25 h-25">
+                Phone is required
+            </div>
+        }
+    </div>
+    <div>
+        <p>Hobbies</p>
+        <button type="button" (click)="addHobby()">Add Hobbies</button>
+    </div>
+    <div formArrayName="hobbies">
+        @for(hobby of hobbies.controls;let idx = $index;track idx){
+            <p [formGroupName]="idx">
+                {{idx}}
+                <input type="text" formControlName="activity">
+            </p> 
+        }
+        @empty {
+            <h3>No hobbies added</h3>
+        }
+    </div>
+    <button type="submit">Submit</button>
+</form>

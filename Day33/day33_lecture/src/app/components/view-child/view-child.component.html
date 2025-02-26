@@ -1,0 +1,23 @@
+<p>{{ childText }}</p>
+
+<h1>Products</h1>
+
+<button (click)="onAddRow()">Add</button>
+
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div formArrayName="products">
+        @for(product of products.controls;let idx = $index;track idx){
+            <div formGroupName="idx">
+                {{idx}}
+                Product Name:
+                <input type="text" formControlName="name">
+                Description:
+                <input type="text" formControlName="description">
+                Quantity:
+                <input type="number" formControlName="qty">
+                <button (click)="removeProduct(idx)">Remove</button>
+            </div>
+        }
+        <button type="submit">Submit</button>
+    </div>
+</form>

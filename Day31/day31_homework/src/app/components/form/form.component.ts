@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, DoCheck, inject, Input, OnInit } from '@angular/core';
 import { CartItem } from '../../model/cartItem';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Order } from '../../model/order';
@@ -9,10 +9,10 @@ import { Order } from '../../model/order';
   templateUrl: './form.component.html',
   styleUrl: './form.component.css'
 })
-export class FormComponent {
+export class FormComponent implements OnInit,DoCheck{
 
   @Input()
-  cartItems:CartItem[] = []
+  cartItems!:CartItem[]
 
   formBuilder = inject(FormBuilder)
 
@@ -67,4 +67,6 @@ export class FormComponent {
       this.form.get("delivery")?.setValue('')
     }
   }
+
+  
 }

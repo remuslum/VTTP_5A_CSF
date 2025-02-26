@@ -19,7 +19,7 @@ export class AppComponent {
     picture:''
   };
 
-  cart:CartItem[] = []
+  cartMap:Map<String,CartItem> = new Map()
 
   formBuilder = inject(FormBuilder)
 
@@ -27,40 +27,71 @@ export class AppComponent {
     return 'assets/fruits/' + imageName; 
   }
 
-  protected sendToCart(product:Product){
-    var item = this.cart.find((x) => x.name === product.name)
+  protected sendItemToCart(product:Product){
+    var item = this.cartMap.get(product.name)
     if(item){
       item.quantity += 1
-      item.totalPrice = item.quantity * product.price
+      item.totalPrice = item.quantity * item.totalPrice
     } else {
-      this.cart.push({
-        name:product.name,
-        quantity:1,
-        totalPrice:product.price
-      })
+      var itemToAdd:CartItem = {name:product.name, quantity:1, totalPrice:product.price}
+      this.cartMap.set(product.name, itemToAdd)
     }
   }
 
-  protected removeFromCart(product:Product){
-    var item = this.cart.find((x) => x.name === product.name)
+  protected removeItemFromCart(product:Product){
+    var item = this.cartMap.get(product.name)
     if(item){
       if(item.quantity == 1){
-        var index = this.cart.findIndex((y) => y.name === product.name)
-        this.cart.splice(index, 1)
+        this.cartMap.delete(product.name)
       } else {
         item.quantity -= 1
         item.totalPrice = item.quantity * product.price
-      }
-    } 
+      } 
+    }
   }
 
-  protected convertToFormArray(){
-    return this.formBuilder.array(
-      this.cart.map((item) => this.formBuilder.group({
-        productName:this.formBuilder.control(item.name),
-        totalPrice:this.formBuilder.control(item.totalPrice),
-        quantity:this.formBuilder.control(item.quantity)
-      }))
-    )
+  protected convertMapToList(map:Map<String,CartItem>):CartItem[]{
+    var cartList:CartItem[] = []
+    for(const value of map.values()){
+      cartList.push(value)
+    }
+    return cartList;
   }
+
+  // protected sendToCart(product:Product){
+  //   var item = this.cart.find((x) => x.name === product.name)
+  //   if(item){
+  //     item.quantity += 1
+  //     item.totalPrice = item.quantity * product.price
+  //   } else {
+  //     this.cart.push({
+  //       name:product.name,
+  //       quantity:1,
+  //       totalPrice:product.price
+  //     })
+  //   }
+  // }
+
+  // protected removeFromCart(product:Product){
+  //   var item = this.cart.find((x) => x.name === product.name)
+  //   if(item){
+  //     if(item.quantity == 1){
+  //       var index = this.cart.findIndex((y) => y.name === product.name)
+  //       this.cart.splice(index, 1)
+  //     } else {
+  //       item.quantity -= 1
+  //       item.totalPrice = item.quantity * product.price
+  //     }
+  //   } 
+  // }
+
+  // protected convertToFormArray(){
+  //   return this.formBuilder.array(
+  //     this.cart.map((item) => this.formBuilder.group({
+  //       productName:this.formBuilder.control(item.name),
+  //       totalPrice:this.formBuilder.control(item.totalPrice),
+  //       quantity:this.formBuilder.control(item.quantity)
+  //     }))
+  //   )
+  // }
 }

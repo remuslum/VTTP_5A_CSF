@@ -1,9 +1,9 @@
 @for(product of myProducts;let idx = $index;track idx){
   <app-inventory [imageName]="getPathName(product.picture)" [name]="product.name" [price]="product.price" 
-  (productToIncrement)="sendToCart($event)" (productToDecrement)="removeFromCart($event)"/>
+  (productToIncrement)="sendItemToCart($event)" (productToDecrement)="removeItemFromCart($event)"/>
 }
 <!-- <app-table [cart]="convertToFormArray()"/> -->
- <app-table [cart]="cart"></app-table>
- <app-form [cartItems]="cart"></app-form>
+ <app-table [cart]="cartMap"></app-table>
+ <app-form [cartItems]="convertMapToList(cartMap)"></app-form>
 
 

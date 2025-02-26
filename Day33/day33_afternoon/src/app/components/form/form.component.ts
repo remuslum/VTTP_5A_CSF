@@ -40,6 +40,7 @@ export class FormComponent implements OnInit{
 
   protected removeHobby(i:number):void {
     this.hobbies.removeAt(i)
+    this.form.setControl('hobbies',this.hobbies)
   }
 
   protected processForm():void {

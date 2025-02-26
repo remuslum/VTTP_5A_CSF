@@ -1,6 +1,6 @@
 <form [formGroup]="form" (ngSubmit)="processForm()">
     <div class="d-flex flex-column justify-content-center align-items center">
-        <div class="mt-2 mb-2">
+        <div class="mt-2 mb-2 w-50">
             <label class="form-label">Name</label>
             <input type="text" class="form-control" formControlName="name">
         </div>
@@ -9,7 +9,7 @@
                 Name is required
             </div>
         }
-        <div class="mt-2 mb-2">
+        <div class="mt-2 mb-2 w-50">
             <label class="form-label">Email</label>
             <input type="text" class="form-control" formControlName="email">
         </div>
@@ -19,7 +19,7 @@
             </div>
         }
 
-        <div class="mt-2 mb-2">
+        <div class="mt-2 mb-2 w-50">
             <label class="form-label">Phone</label>
             <input type="text" class="form-control" formControlName="phone">
         </div>
@@ -31,7 +31,7 @@
     </div>
     <div>
         <p>Hobbies</p>
-        <button type="button" (click)="addHobby()">Add Hobbies</button>
+        <button type="button" class="btn btn-success mb-3" (click)="addHobby()">Add Hobbies</button>
     </div>
     <div formArrayName="hobbies">
         @for(hobby of hobbies.controls;let idx = $index;track idx){
@@ -45,5 +45,5 @@
             <h3>No hobbies added</h3>
         }
     </div>
-    <button type="submit">Submit</button>
+    <button type="submit" class="btn btn-primary">Submit</button>
 </form>

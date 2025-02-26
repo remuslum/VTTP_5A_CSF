@@ -38,6 +38,10 @@ export class FormComponent implements OnInit{
     this.hobbies.push(this.createHobby())
   }
 
+  protected removeHobby(i:number):void {
+    this.hobbies.removeAt(i)
+  }
+
   protected processForm():void {
     console.log(this.form.value)
   }

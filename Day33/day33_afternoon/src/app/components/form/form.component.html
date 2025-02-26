@@ -38,6 +38,7 @@
             <p [formGroupName]="idx">
                 {{idx}}
                 <input type="text" formControlName="activity">
+                <button type="button" class="btn btn-danger" (click)="removeHobby(idx)">Remove</button>
             </p> 
         }
         @empty {

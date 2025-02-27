@@ -1,0 +1,19 @@
+<h1>File upload</h1>
+<input type="file" (change)="handleFileUpload($event)" #fileUpload>
+
+@if(selectedFile){
+    <div class="d-flex">
+        <h3>Selected File</h3>
+        <ul>
+            <li>
+                <strong>FileName; </strong>
+                {{selectedFile?.name}}
+                <strong>Type: </strong>
+                {{selectedFile?.type}}
+                <strong>Size: </strong>
+                {{selectedFile?.size}}
+            </li>
+        </ul>
+        <button class="btn btn-primary" (click)="uploadFile()">Upload</button>
+    </div>
+}

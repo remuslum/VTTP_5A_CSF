@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FakeryService } from '../../service/fakery.service';
+import { Photo } from '../../model/photo.model';
 
 @Component({
   selector: 'app-gallery',
@@ -10,7 +11,7 @@ import { FakeryService } from '../../service/fakery.service';
 export class GalleryComponent {
   constructor(private fakeSvc:FakeryService){}
 
-  photos:any[] = []
+  photos:Photo[] = []
 
   ngOnInit():void {
     // this.fakeSvc.getFakeryPhotos().then(
@@ -22,7 +23,9 @@ export class GalleryComponent {
     // )
     this.fakeSvc.getFakeryPhotos().subscribe({
       next : (photo) => {
-        this.photos.push(...photo)
+        for(let i = 0; i < 30; i++){
+          this.photos.push(photo[i])
+        }
       },
       error : (error) => {
         console.error(error)

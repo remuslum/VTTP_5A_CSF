@@ -6,11 +6,11 @@
         @for (photo of photos; track $index) {
             <div class="col-md-4">
                 <div class="card mt-2 mb-2 mx-2">
-                    <img src={{photo.photo_url}} alt={{photo.caption}} class="card-img-top">
+                    <img [src]='photo.photo_url' [alt]='photo.caption' class="card-img-top">
                     <div class="card-body">
-                        <h3>{{photo.caption}}</h3>
-                        <p>
-                            {{photo.photo_url}}
+                        <h3 class="card-title">{{photo.caption}}</h3>
+                        <p class="card-text">
+                            Created at: {{photo.created_at}}
                         </p>
                     </div>
                 </div>

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import axios from 'axios';
 import { Observable } from 'rxjs';
+import { Photo } from '../model/photo.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,14 +13,15 @@ export class FakeryService {
 
   private fakeryUrl:string = "https://jsonfakery.com/photos"
 
-  getFakeryPhotos():Observable<any>{
+  getFakeryPhotos():Observable<Photo[]>{
     // try {
     //   const photos = await axios.get(this.fakeryUrl)
     //   return photos.data;  
     // } catch (error){
     //   console.error(error)
     // }
-    return this.httpClient.get(this.fakeryUrl)
-    
+
+    // So long as the attributes are the same name, you can include the type in the generic <>
+    return this.httpClient.get<Photo[]>(this.fakeryUrl)
   }
 }

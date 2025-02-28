@@ -31,14 +31,12 @@ export class UpdateEmployeeComponent {
         this.form.patchValue(this.employeeToUpdate)
       }
     )
-    console.log(this.form.value)
-    console.log(this.employeeToUpdate)
   }
 
   protected postEmployee(){
     const employee:Employee = this.form.value
     console.log(employee)
-    this.employeeSvc.create(employee).subscribe({
+    this.employeeSvc.updateById(employee.id,employee).subscribe({
       next : (data) => console.log('Success'),
       error: (error) => console.log('Failure')
     })

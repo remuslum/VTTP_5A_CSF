@@ -9,6 +9,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { UpdateEmployeeComponent } from './components/update-employee/update-employee.component';
+import { DetailEmployeeComponent } from './components/detail-employee/detail-employee.component';
+import { TestComponent } from './components/test/test.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { UpdateEmployeeComponent } from './components/update-employee/update-emp
     CreateEmployeeComponent,
     ListEmployeeComponent,
     NavbarComponent,
-    UpdateEmployeeComponent
+    UpdateEmployeeComponent,
+    DetailEmployeeComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,

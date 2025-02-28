@@ -34,6 +34,9 @@
                             {{employee.emailId}}
                         </td>
                         <td>
+                            <button class="btn btn-primary" [routerLink]="['/detailemployee',employee.id]">Details</button>
+                        </td>
+                        <td>
                             <button class="btn btn-success" [routerLink]="['/updateEmployee',employee.id]" >Update</button>
                         </td>
                         <td>

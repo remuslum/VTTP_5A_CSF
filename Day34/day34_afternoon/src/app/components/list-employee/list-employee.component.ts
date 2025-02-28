@@ -18,4 +18,5 @@ export class ListEmployeeComponent {
       (data : Employee[]) => this.employees = data
     )
   }
+
 }

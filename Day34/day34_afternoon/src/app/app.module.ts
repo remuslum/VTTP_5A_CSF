@@ -6,16 +6,22 @@ import { CreateEmployeeComponent } from './components/create-employee/create-emp
 import { ListEmployeeComponent } from './components/list-employee/list-employee.component';
 import { provideHttpClient } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app-routing/app-routing.module';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { UpdateEmployeeComponent } from './components/update-employee/update-employee.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CreateEmployeeComponent,
-    ListEmployeeComponent
+    ListEmployeeComponent,
+    NavbarComponent,
+    UpdateEmployeeComponent
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppRoutingModule
   ],
   providers: [
     provideHttpClient()

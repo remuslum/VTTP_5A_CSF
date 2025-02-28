@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import { Employee } from '../model/employee.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +11,11 @@ export class EmployeeService {
 
   constructor(private httpClient:HttpClient) { }
 
-  baseUrl:string = "http://localhost:8080/api/v1/employees"
+  baseUrl:string = environment.apiUrl
 
   getAll(): Observable<Employee[]> {
     return this.httpClient.get<Employee[]>(this.baseUrl)
+    // return firstValueFrom(this.httpClient.get<Employee[]>(this.baseUrl))
   }
 
   getById(id:number):Observable<Employee> {

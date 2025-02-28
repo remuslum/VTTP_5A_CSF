@@ -1,1 +1,9 @@
-<p>test works!</p>
+<div>
+    <select name="countries">
+        @for(object of data;let idx = $index;track idx){
+            <option [value]="object.code">
+                {{object.name}}
+            </option>
+        }
+    </select>
+</div>

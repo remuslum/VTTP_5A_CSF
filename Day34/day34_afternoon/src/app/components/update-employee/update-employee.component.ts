@@ -1,8 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { Employee } from '../../model/employee.model';
 import { ActivatedRoute } from '@angular/router';
 import { EmployeeService } from '../../service/employee.service';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-update-employee',
@@ -19,6 +19,7 @@ export class UpdateEmployeeComponent {
 
   ngOnInit():void {
     this.form = new FormGroup({
+      id:new FormControl(0),
       firstName:new FormControl(""),
       lastName:new FormControl(""),
       emailId:new FormControl("")
@@ -35,7 +36,6 @@ export class UpdateEmployeeComponent {
 
   protected postEmployee(){
     const employee:Employee = this.form.value
-    console.log(employee)
     this.employeeSvc.updateById(employee.id,employee).subscribe({
       next : (data) => console.log('Success'),
       error: (error) => console.log('Failure')

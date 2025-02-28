@@ -8,13 +8,18 @@ import { DetailEmployeeComponent } from '../components/detail-employee/detail-em
 import { RouteGuardService } from '../service/route-guard.service';
 import { DeactivateGuardService } from '../service/deactivate-guard.service';
 import { TestComponent } from '../components/test/test.component';
+import { DebounceComponent } from '../components/debounce/debounce.component';
+import { ExampleComponent } from '../components/example/example.component';
 
 const routes:Routes = [
   {path:"employeeslist",component:ListEmployeeComponent},
   {path:"employeeCreate",component:CreateEmployeeComponent},
-  {path:"updateEmployee/:employeeId",component:UpdateEmployeeComponent,canActivate:[RouteGuardService]},
+  {path:"updateEmployee/:employeeId",component:UpdateEmployeeComponent},
+  // {path:"updateEmployee/:employeeId",component:UpdateEmployeeComponent,canActivate:[RouteGuardService]},
   {path:"detailemployee/:employeeId",component:DetailEmployeeComponent},
   {path:"test",component:TestComponent, canDeactivate:[DeactivateGuardService]},
+  {path:"debounce",component:DebounceComponent},
+  {path:"example",component:ExampleComponent},
   {path:"**",redirectTo:"/",pathMatch:'full'}
 ]
 

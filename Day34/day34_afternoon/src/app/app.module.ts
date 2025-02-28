@@ -11,6 +11,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { UpdateEmployeeComponent } from './components/update-employee/update-employee.component';
 import { DetailEmployeeComponent } from './components/detail-employee/detail-employee.component';
 import { TestComponent } from './components/test/test.component';
+import { DebounceComponent } from './components/debounce/debounce.component';
+import { ExampleComponent } from './components/example/example.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { TestComponent } from './components/test/test.component';
     NavbarComponent,
     UpdateEmployeeComponent,
     DetailEmployeeComponent,
-    TestComponent
+    TestComponent,
+    DebounceComponent,
+    ExampleComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,38 @@
+<div class="d-flex align-items-center justify-content-center">
+    @if(countryDetails){
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Latitude</th>
+                    <th>Longtitude</th>
+                    <th>Main Weather</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        {{countryDetails.name}}
+                    </td>
+                    <td>
+                        {{countryDetails.lat}}
+                    </td>
+                    <td>
+                        {{countryDetails.lon}}
+                    </td>
+                    <td>
+                        {{countryDetails.mainWeather}}
+                    </td>
+                    <td>
+                        {{countryDetails.description}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    }
+    @else {
+        <p class="fs-3">No country entered</p>
+    }
+    
+</div>

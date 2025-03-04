@@ -9,10 +9,4 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'day35_workshop';
 
-  countriesList:Set<string> = new Set(['Singapore','Kuala Lumpur','Tokyo']) 
-
-  protected addCountry(country:string):void{
-    this.countriesList.add(country)
-  }
-
 }

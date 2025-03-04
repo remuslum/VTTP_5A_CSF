@@ -1,7 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { apiKey, apiUrl } from '../model/country.model';
+import { CountryDetails } from '../model/countrydetails.model';
 
 @Injectable({
   providedIn: 'root'

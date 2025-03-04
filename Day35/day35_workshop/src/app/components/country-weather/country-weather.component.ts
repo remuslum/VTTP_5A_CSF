@@ -13,7 +13,7 @@ export class CountryWeatherComponent implements OnInit {
 
   constructor(private activatedRoute:ActivatedRoute, private countryWeatherSvc:CountryWeatherService){ }
 
-  countryWeatherDetails!:CountryDetails 
+  countryWeatherDetails:CountryDetails = new CountryDetails('Loading...','Loading...','Loading...',0)
 
   ngOnInit(): void {
     const country= this.activatedRoute.snapshot.paramMap.get('countryName')

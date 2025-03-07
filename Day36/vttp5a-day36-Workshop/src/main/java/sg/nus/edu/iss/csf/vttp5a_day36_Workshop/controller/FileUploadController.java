@@ -19,7 +19,6 @@ import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import sg.nus.edu.iss.csf.vttp5a_day36_Workshop.model.Post;
 import sg.nus.edu.iss.csf.vttp5a_day36_Workshop.service.FileUploadService;
-import sg.nus.edu.iss.csf.vttp5a_day36_Workshop.service.S3Service;
 
 
 @RestController
@@ -30,8 +29,8 @@ public class FileUploadController {
     @Autowired
     private FileUploadService fileUploadService;
 
-    @Autowired
-    private S3Service s3Service;
+    // @Autowired
+    // private S3Service s3Service;
 
     @PostMapping(path="/api/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> postMethodName(@RequestParam("file") MultipartFile file, 
@@ -41,8 +40,8 @@ public class FileUploadController {
             postId = fileUploadService.uploadFile(file, comments);
             System.out.println("Post Id: " + postId);
             if(postId != null && !postId.isEmpty()){
-                String s3EndpointUrl = s3Service.upload(file, comments, postId);
-                System.out.println(s3EndpointUrl);
+                // String s3EndpointUrl = s3Service.upload(file, comments, postId);
+                // System.out.println(s3EndpointUrl);
             }
         } catch (SQLException | IOException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -62,5 +61,7 @@ public class FileUploadController {
 
         return ResponseEntity.ok(payload.toString());
     }
+
+    
     
 }

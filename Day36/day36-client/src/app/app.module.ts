@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,6 +9,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { MaterialModule } from './material/material.module';
 import { UploadComponent } from './components/upload/upload.component';
 import { ViewImageComponent } from './components/view-image/view-image.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,13 @@ import { ViewImageComponent } from './components/view-image/view-image.component
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi()),

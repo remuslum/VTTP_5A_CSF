@@ -6,13 +6,16 @@
         </tr>
     </thead>
     <tbody>
-        @for(task of allTasks; let idx = $index; track idx){
+        @for(task of tasks$ | async; let idx = $index; track idx){
             <tr>
                 <td>
                     {{task.name}}
                 </td>
                 <td>
                     {{task.priority}}
+                </td>
+                <td>
+                    <button class="btn btn-danger" (click)="deleteTask(task.id)">Delete {{task.id}}</button>
                 </td>
             </tr>
         }

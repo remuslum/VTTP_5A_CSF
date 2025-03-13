@@ -26,7 +26,7 @@ export class TaskDb extends Dexie{
     }
 
     // Remove a task
-    removeTask(id:string):void {
-        this.tasks.delete(id)
+    removeTask(id:string):Promise<string>{
+        return this.tasks.delete(id).then(() => id)
     }
 }

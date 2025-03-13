@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Task } from '../../models/task.model';
 import { TaskStore } from '../../store/task.store';
+import { map, of } from 'rxjs';
 
 @Component({
   selector: 'app-task',
@@ -15,8 +16,13 @@ export class TaskComponent implements OnInit{
   protected form!:FormGroup
   protected taskStore = inject(TaskStore)
 
+  private namesOfOb$ = of('Alice','Bob','Charles')
+
   ngOnInit(): void {
     this.form = this.createForm()
+    this.namesOfOb$.pipe(
+      map(name => name.toUpperCase())
+    ).subscribe((val) => console.log(val))
   }
 
   createForm():FormGroup {

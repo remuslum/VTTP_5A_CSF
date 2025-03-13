@@ -12,12 +12,13 @@ import { Task } from '../../models/task.model';
 export class TaskListComponent implements OnInit{
   private taskStore = inject(TaskStore)
   protected tasks$!: Observable<Task[]>
-  protected allTasks : Task[] = []
 
   ngOnInit(): void {
     this.tasks$ = this.taskStore.getTasks$('all')
-    this.tasks$.subscribe({
-      next : (value) => this.allTasks = value 
-    })
   }  
+
+  deleteTask(id:string):void {
+    this.taskStore.removeTask(id)
+    this.tasks$ = this.taskStore.getTasks$('all')
+  }
 }

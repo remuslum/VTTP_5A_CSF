@@ -1,0 +1,20 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Priority</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(task of allTasks; let idx = $index; track idx){
+            <tr>
+                <td>
+                    {{task.name}}
+                </td>
+                <td>
+                    {{task.priority}}
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

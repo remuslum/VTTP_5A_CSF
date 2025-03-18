@@ -1,0 +1,33 @@
+<!-- Adding async pipe removes the need to subscribe -->
+<h2>Cart {{itemCount$ | async}}</h2>
+
+<button (click)="deleteItem()">Delete</button>
+<form [formGroup]="form" (submit)="processForm()">
+  <table>
+    <tr>
+      <td>
+        Item: 
+      </td>
+      <td>
+        <input type="text" formControlName="item">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Price:
+      </td>
+      <td>
+        <input type="text" formControlName="price">
+      </td>
+    </tr>
+    <tr>
+      <button type="submit">Save</button>
+    </tr>
+  </table>
+</form>
+
+@for(item of items$ | async; track $index){
+  <h3>
+    {{item.item}}
+  </h3>
+}
